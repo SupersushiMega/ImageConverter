@@ -31,6 +31,14 @@ namespace Image_Converter
         public Form1()
         {
             InitializeComponent();
+            Selection = new Rectangle();
+            Selection.Width = 200;
+            Selection.Height = 100;
+            Selection.X = 100;
+            Selection.Y = 100;
+
+            MapPreview = new Bitmap(Selection.Width, Selection.Height);
+
             Original = pictureBox1.CreateGraphics();
             Preview = pictureBoxPreview.CreateGraphics();
             x = relativePos.X;
@@ -39,31 +47,37 @@ namespace Image_Converter
             Brush brush = new SolidBrush(Color.Black);
             pen = new Pen(brush);
             pen.Width = 4;
+        }
 
-            Selection = new Rectangle();
-            Selection.Width = 100;
-            Selection.Height = 100;
-            Selection.X = 100;
-            Selection.Y = 100;
+        private void TargetResOrSize_Changed(object sender, EventArgs e)
+        {
+            Selection.Width = (Int32)(TargetResW.Value * Scale.Value);
+            Selection.Height = (Int32)(TargetResW.Value * Scale.Value);
+            MapPreview = new Bitmap(Selection.Width, Selection.Height);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (MapOriginal != null)
             {
+                relativePos = pictureBox1.PointToClient(MousePosition);
+                Selection.Location = relativePos;
+                Original.DrawRectangle(pen, Selection);
+                MapPreview.SetResolution((float)Selection.Width, (float)Selection.Height);
+                pictureBoxPreview.Width = Selection.Width;
+                pictureBoxPreview.Height = Selection.Height;
                 DrawPreview();
-                //pictureBox1.DrawToBitmap(MapOriginal, Selection);
+                pictureBoxPreview.Image = MapPreview;
             }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            Cursor.Position.Offset(pictureBox1.Location);
-            relativePos = pictureBox1.PointToClient(MousePosition);
-            OriginalRes.Text = relativePos.X + ":" + relativePos.Y;
-            Selection.Location = relativePos;
-            Original.DrawRectangle(pen, Selection);
-            Preview.DrawRectangle(pen, Selection);
+            if (MapOriginal != null)
+            {
+                //OriginalRes.Text = relativePos.X + ":" + relativePos.Y;
+                //pictureBox1.Image = original;
+            }
         }
 
         private void pictureBox1_DragDrop(object sender, DragEventArgs e)
@@ -84,9 +98,8 @@ namespace Image_Converter
             {
                 original = Image.FromFile(Browser.FileName);
                 pictureBox1.Image = original;
-                pictureBoxPreview.Image = original;
-                MapOriginal = new Bitmap(pictureBox1.Image);
-                MapPreview = new Bitmap(pictureBoxPreview.Image);
+                MapOriginal = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                pictureBox1.DrawToBitmap(MapOriginal, new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height));
                 OriginalRes.Text = original.Width + " : " + original.Height;
             }
         }
@@ -95,68 +108,17 @@ namespace Image_Converter
         {
             Int32 X = 0;
             Int32 Y = 0;
-            Int32 x = 0;
-            Int32 y = 0;
+
             Preview.Clear(Color.Black);
-            for (X = Selection.X; X < Selection.Width + Selection.X; X++)
+            for (X = Selection.X; (X < (Selection.Width + Selection.X)) && (X < pictureBox1.Width); X++)
             {
-                for (Y = Selection.Y; Y < Selection.Height + Selection.Y; Y++)
+                for (Y = Selection.Y; (Y < (Selection.Height + Selection.Y)) && (Y < pictureBox1.Height); Y++)
                 {
-                    MapPreview.SetPixel(X - Selection.X, Y - Selection.Y, MapOriginal.GetPixel(X,Y));
-                    Debug.WriteLine(MapOriginal.GetPixel(X, Y));
+                    MapPreview.SetPixel((X - Selection.X), (Y - Selection.Y), Color.Black);
+                    MapOriginal.GetPixel(X, Y);
                 }
             }
             Preview.DrawImage(MapPreview, Point.Empty);
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void OriginHeight_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBoxPreview_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

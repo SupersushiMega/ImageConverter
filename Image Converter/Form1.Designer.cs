@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -45,17 +47,20 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.Scale = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TargetResH = new System.Windows.Forms.TextBox();
-            this.TargetResW = new System.Windows.Forms.TextBox();
+            this.TargetResH = new System.Windows.Forms.NumericUpDown();
+            this.TargetResW = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.ResolutionOriginal = new System.Windows.Forms.GroupBox();
             this.OriginalRes = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -65,10 +70,11 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Scale)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetResH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetResW)).BeginInit();
             this.ResolutionOriginal.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -77,7 +83,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(791, 402);
+            this.pictureBox1.Size = new System.Drawing.Size(1075, 811);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -98,18 +104,45 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 823F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1601, 823);
             this.tableLayoutPanel1.TabIndex = 1;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.83699F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.16301F));
+            this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.splitContainer2, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.84823F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 817F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1595, 817);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(1084, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.pictureBoxPreview);
+            this.splitContainer2.Size = new System.Drawing.Size(508, 811);
+            this.splitContainer2.SplitterDistance = 378;
+            this.splitContainer2.TabIndex = 1;
             // 
             // pictureBoxPreview
             // 
             this.pictureBoxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxPreview.Location = new System.Drawing.Point(800, 3);
+            this.pictureBoxPreview.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxPreview.Name = "pictureBoxPreview";
-            this.pictureBoxPreview.Size = new System.Drawing.Size(792, 402);
+            this.pictureBoxPreview.Size = new System.Drawing.Size(508, 378);
             this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPreview.TabIndex = 0;
             this.pictureBoxPreview.TabStop = false;
-            this.pictureBoxPreview.Click += new System.EventHandler(this.pictureBoxPreview_Click);
             // 
             // contextMenuStrip1
             // 
@@ -218,7 +251,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.Scale);
             this.groupBox2.Location = new System.Drawing.Point(3, 92);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(222, 52);
@@ -226,13 +259,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scale";
             // 
-            // numericUpDown1
+            // Scale
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(6, 19);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(210, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.Scale.DecimalPlaces = 2;
+            this.Scale.Location = new System.Drawing.Point(6, 19);
+            this.Scale.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.Scale.Name = "Scale";
+            this.Scale.Size = new System.Drawing.Size(210, 20);
+            this.Scale.TabIndex = 3;
+            this.Scale.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.Scale.ValueChanged += new System.EventHandler(this.TargetResOrSize_Changed);
             // 
             // groupBox1
             // 
@@ -248,20 +292,50 @@
             // 
             // TargetResH
             // 
-            this.TargetResH.Enabled = false;
             this.TargetResH.Location = new System.Drawing.Point(122, 18);
+            this.TargetResH.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.TargetResH.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TargetResH.Name = "TargetResH";
             this.TargetResH.Size = new System.Drawing.Size(94, 20);
-            this.TargetResH.TabIndex = 1;
-            this.TargetResH.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.TargetResH.TabIndex = 4;
+            this.TargetResH.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TargetResH.ValueChanged += new System.EventHandler(this.TargetResOrSize_Changed);
             // 
             // TargetResW
             // 
-            this.TargetResW.Enabled = false;
+            this.TargetResW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TargetResW.Location = new System.Drawing.Point(6, 18);
+            this.TargetResW.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.TargetResW.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TargetResW.Name = "TargetResW";
             this.TargetResW.Size = new System.Drawing.Size(90, 20);
-            this.TargetResW.TabIndex = 0;
+            this.TargetResW.TabIndex = 3;
+            this.TargetResW.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TargetResW.ValueChanged += new System.EventHandler(this.TargetResOrSize_Changed);
             // 
             // label1
             // 
@@ -282,7 +356,6 @@
             this.ResolutionOriginal.TabIndex = 1;
             this.ResolutionOriginal.TabStop = false;
             this.ResolutionOriginal.Text = "Original Resolution";
-            this.ResolutionOriginal.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // OriginalRes
             // 
@@ -291,21 +364,6 @@
             this.OriginalRes.Name = "OriginalRes";
             this.OriginalRes.Size = new System.Drawing.Size(210, 20);
             this.OriginalRes.TabIndex = 0;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.pictureBoxPreview, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1595, 817);
-            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // Form1
             // 
@@ -318,6 +376,10 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -330,12 +392,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Scale)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetResH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetResW)).EndInit();
             this.ResolutionOriginal.ResumeLayout(false);
             this.ResolutionOriginal.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -358,13 +421,14 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox OriginalRes;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox TargetResW;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TargetResH;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown Scale;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.NumericUpDown TargetResH;
+        private System.Windows.Forms.NumericUpDown TargetResW;
     }
 }
 
