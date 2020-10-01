@@ -51,8 +51,8 @@ namespace Image_Converter
 
         private void TargetResOrSize_Changed(object sender, EventArgs e)
         {
-            Selection.Width = (Int32)(TargetResW.Value * Scale.Value);
-            Selection.Height = (Int32)(TargetResW.Value * Scale.Value);
+            Selection.Width = (Int32)Math.Ceiling(TargetResW.Value * Scale.Value);
+            Selection.Height = (Int32)Math.Ceiling(TargetResH.Value * Scale.Value);
             MapPreview = new Bitmap(Selection.Width, Selection.Height);
         }
 
@@ -61,6 +61,8 @@ namespace Image_Converter
             if (MapOriginal != null)
             {
                 relativePos = pictureBox1.PointToClient(MousePosition);
+                relativePos.X = relativePos.X - (Selection.Width / 2);
+                relativePos.Y = relativePos.Y - (Selection.Height / 2);
                 Selection.Location = relativePos;
                 Original.DrawRectangle(pen, Selection);
                 MapPreview.SetResolution((float)Selection.Width, (float)Selection.Height);
@@ -110,12 +112,19 @@ namespace Image_Converter
             Int32 Y = 0;
 
             Preview.Clear(Color.Black);
-            for (X = Selection.X; (X < (Selection.Width + Selection.X)) && (X < pictureBox1.Width); X++)
+            for (X = Selection.X; (X < (Selection.Width + Selection.X)); X++)
             {
-                for (Y = Selection.Y; (Y < (Selection.Height + Selection.Y)) && (Y < pictureBox1.Height); Y++)
+                for (Y = Selection.Y; (Y < (Selection.Height + Selection.Y)); Y++)
                 {
-                    MapPreview.SetPixel((X - Selection.X), (Y - Selection.Y), Color.Black);
-                    MapOriginal.GetPixel(X, Y);
+                    if((Y < 0) || (X < 0) || !(Y < MapOriginal.Height) || !(X < MapOriginal.Width))
+                    {
+                        MapPreview.SetPixel((X - Selection.X), (Y - Selection.Y), Color.White);
+                    }
+
+                    else
+                    {
+                        MapPreview.SetPixel((X - Selection.X), (Y - Selection.Y), MapOriginal.GetPixel(X, Y));
+                    }
                 }
             }
             Preview.DrawImage(MapPreview, Point.Empty);
